@@ -55,13 +55,17 @@ function init() {
 
 async function openPopupOnAddToCart() {
   const body = await elementReady("body");
+  const openPopupButton = await elementReady('[href="#zvonok"]');
 
   if (body.classList.contains("logged-in")) return;
 
-  const openPopupButton = await elementReady('[href="#zvonok"]');
-  const button = await elementReady(".single_add_to_cart_button");
+  document.addEventListener("click", (ev) => {
+    const parent = ev.target.closest(
+      ".add_to_cart_button, .single_add_to_cart_button"
+    );
+    if (!parent) return;
 
-  button.addEventListener("click", () => {
+    ev.preventDefault();
     openPopupButton.click();
   });
 }
