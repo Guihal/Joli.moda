@@ -45,7 +45,11 @@ function sendPurposeOnCartSucceed() {
 
 function sendPurpose() {
   console.log("Purpouse is sended");
-  ym(99657632, "reachGoal", "zapros_opt");
+  ym(99657632, "reachGoal", "zapros_opt", {}, goalCallback);
+}
+
+function goalCallback() {
+  console.log("запрос в Метрику успешно отправлен");
 }
 
 function init() {
